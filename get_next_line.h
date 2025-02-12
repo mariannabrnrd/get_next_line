@@ -27,11 +27,11 @@
 char	*get_next_line(int fd);
 char	*update_remainder(char *remainder);
 char	*new_remainder(char *remainder, char *line);
-char	*new_line(char *remainder, char *line);
-char	*count_len(char *remainder);
-int		ft_strlen(const char *s);
-char	*ft_strdup(const char *s);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strchr(const char *s, int c);
+char	*new_line(char *remainder);
+int		count_len(char *remainder);
+int		ft_strlen(char *s);
+char	*ft_strdup(char *s);
+char	*ft_strjoin(char *s1, char *s2);
+int		ft_strchr(char *s, char c);
 
 #endif

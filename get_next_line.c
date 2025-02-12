@@ -45,11 +45,11 @@ char	*update_remainder(char *remainder)
 	j = 0;
 	while (remainder[i])
 		update[j++] = remainder[i++];
-	update[j] = '\n';
+	update[j] = '\0';
 	return (update);
 }
 
-int	*count_len(char *remainder)
+int	count_len(char *remainder)
 {
 	int	i;
 
@@ -62,7 +62,7 @@ int	*count_len(char *remainder)
 	return (i);
 }
 
-char	*new_line(char *remainder, char *line)
+char	*new_line(char *remainder)
 {
 	int		i;
 	int		len;
@@ -72,8 +72,8 @@ char	*new_line(char *remainder, char *line)
 	if (!remainder || ft_strlen(remainder) == 0)
 		return (NULL);
 	len = count_len(remainder);
-	new = malloc(sizeof(char) * len + 1) while (remainder[i] != '\n'
-			&& remainder[i])
+	new = malloc(sizeof(char) * len + 2);
+	while (remainder[i] != '\n' && remainder[i])
 	{
 		new[i] = remainder[i];
 		i++;
@@ -91,8 +91,8 @@ char	*get_next_line(int fd)
 	static char	*remainder;
 	char		*line;
 	int			bytes_read;
+	char		*temp;
 
-	// char      *temp;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	line = malloc(sizeof(char) * BUFFER_SIZE + 1);
@@ -108,9 +108,9 @@ char	*get_next_line(int fd)
 		bytes_read = read(fd, line, BUFFER_SIZE);
 	}
 	free(line);
-	line = new_line(remainder, line);
-	// temp = remainder
+	line = new_line(remainder);
+	temp = remainder;
 	remainder = update_remainder(remainder);
-	// free(temp);
+	free(temp);
 	return (line);
 }
